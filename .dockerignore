@@ -1,0 +1,7 @@
+.vscode/
+minechat_client.egg_info/
+pip-wheel-metadata/
+
+.gitignore
+.minechat.history
+README.md
