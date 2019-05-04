@@ -1,4 +1,5 @@
 import asyncio
+import os
 
 import minechat_client.connector as connector
 import minechat_client.observer as observer
@@ -40,7 +41,19 @@ async def run_main_loop(args):
                 )
 
 
+def check_permissions(path):
+    """check if file or containing directory is writable"""
+    if os.path.exists(path):
+        return os.access(path, os.W_OK)
+    return os.access(
+        os.path.abspath(os.path.dirname(path)), os.W_OK
+    )
+
+
 def main(args):
+    if not check_permissions(args.history):
+        print("Check if history file is writable")
+        return
     try:
         asyncio.run(run_main_loop(args))
     except KeyboardInterrupt:
