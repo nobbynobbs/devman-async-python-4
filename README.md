@@ -1,6 +1,7 @@
 # Minechat client
 
 Lesson 4 in devman's async-python module
+
 Simple TCP clent
 
 ## How to use
@@ -45,4 +46,4 @@ Additionally to command line args the next environment variables are supported.
 - MINECHAT_HISTORY
 - MINECHAT_AUTH_TOKEN
 
-If command line argument is used its value would be used.
+If command line argument is used its value has higher priority.
