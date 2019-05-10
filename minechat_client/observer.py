@@ -7,6 +7,7 @@ import abc
 и чтения из сокета было очень неудобно и некрасиво.
 """
 
+
 class Observable(abc.ABC):
     def __init__(self, subscribers=None):
         if subscribers is None:
@@ -32,8 +33,5 @@ class Observer(abc.ABC):
     """something like Observer"""
 
     @abc.abstractmethod
-    async def handle_update(self, message):
-        pass
-
     async def update(self, message):
-        await self.handle_update(message)
+        pass

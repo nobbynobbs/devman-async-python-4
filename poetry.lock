@@ -1,12 +1,4 @@
 [[package]]
-category = "main"
-description = "File support for asyncio."
-name = "aiofiles"
-optional = false
-python-versions = "*"
-version = "0.4.0"
-
-[[package]]
 category = "dev"
 description = "An abstract syntax tree for Python with inference support."
 name = "astroid"
@@ -205,11 +197,10 @@ python-versions = "*"
 version = "1.11.1"
 
 [metadata]
-content-hash = "32b94d5c2163dccace240b0c999f4e5f34b3071aedffd829cde5b636bdf88c0c"
+content-hash = "18f219433dedac1c90622d68974fd48a64ec8876734b1a0f77c6ab1092b0e8eb"
 python-versions = "^3.7"
 
 [metadata.hashes]
-aiofiles = ["021ea0ba314a86027c166ecc4b4c07f2d40fc0f4b3a950d1868a0f2571c2bbee", "1e644c2573f953664368de28d2aa4c89dfd64550429d0c27c4680ccd3aa4985d"]
 astroid = ["6560e1e1749f68c64a4b5dee4e091fce798d2f0d84ebe638cf0e0585a343acf4", "b65db1bbaac9f9f4d190199bb8680af6f6f84fd3769a5ea883df8a91fe68b4c4"]
 atomicwrites = ["03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4", "75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"]
 attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"]

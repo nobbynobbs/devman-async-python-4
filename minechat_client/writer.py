@@ -1,11 +1,12 @@
 """
 Здесь тоже "изобрел" пару декораторов.
-Но они вроде простые и от дублирования кода избавляют 
+Но они вроде простые и от дублирования кода избавляют
 """
 
 import asyncio
 import json
 import logging
+import sys
 from functools import wraps
 
 import minechat_client.connector as connector
@@ -113,8 +114,8 @@ async def send_message(args):
         )
         if account_info is None:
             print("Unknown token. Check you entered token correctly "
-                  "or register the new account")
-            return
+                  "or register the new account", file=sys.stderr)
+            exit(1)
         # message doesn't appear in the chat if only one `\n` used
         logging.debug("Sending message")
         await send(writer, sanitize(args.message, eol="\n\n"))

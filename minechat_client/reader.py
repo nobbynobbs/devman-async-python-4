@@ -15,6 +15,11 @@ class Reader(observer.Observable):
 
     async def read_forever(self):
         while True:
+            # Это нужный таймаут. Если у нас закончится интернет
+            # или сервер на другой стороне внезапно взорвется,
+            # мы будем вечно пытаться вычитать этот сокет и никак
+            # не узнаем, что читать больше неоткуда.
+            # Вопрос только в величине этого таймаута.
             chat_message = (
                 await asyncio.wait_for(self.reader.readline(), self.timeout)
             ).decode("utf-8")

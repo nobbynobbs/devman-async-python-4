@@ -4,7 +4,7 @@ import socket
 import minechat_client.observer as observer
 
 
-async def _exponential_backoff(backoff=0.1, max_delay=5):
+def _exponential_backoff(backoff=0.1, max_delay=5):
     """calculate and yield delay duration"""
     attempt = 0
     while True:
@@ -28,7 +28,11 @@ class MinechatConnection(observer.Observable):
         super().__init__(subscribers)
 
     async def __aenter__(self):
-        async for delay in _exponential_backoff():
+        """а зачем здесь contextlib?
+        тут довольно много кода в __aenter__,
+        еще и наследование у класса
+        """
+        for delay in _exponential_backoff():
             try:
                 self.reader, self.writer = await asyncio.wait_for(
                     asyncio.open_connection(self.host, self.port),
