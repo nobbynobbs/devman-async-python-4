@@ -1,6 +1,8 @@
 import asyncio
 import os
 
+import aiofiles
+
 import minechat_client.connector as connector
 import minechat_client.observer as observer
 import minechat_client.logger as logger
@@ -22,19 +24,20 @@ class Reader(observer.Observable):
 
 
 async def run_main_loop(args):
-    logger_observer = logger.Logger(args.history)
-    connection = connector.MinechatConnection(
-        args.host, args.port, subscribers=[logger_observer]
-    )
-    while True:
-        async with connection as (stream_reader, _):
-            reader = Reader(stream_reader, subscribers=[logger_observer])
-            try:
-                await reader.read_forever()
-            except ConnectionResetError:
-                await logger_observer.log(
-                    "Connection is lost, reconnecting"
-                )
+    async with aiofiles.open(args.history, "a") as async_fd:
+        logger_observer = logger.Logger(async_fd)
+        connection = connector.MinechatConnection(
+            args.host, args.port, subscribers=[logger_observer]
+        )
+        while True:
+            async with connection as (stream_reader, _):
+                reader = Reader(stream_reader, subscribers=[logger_observer])
+                try:
+                    await reader.read_forever()
+                except ConnectionResetError:
+                    await logger_observer.log(
+                        "Connection is lost, reconnecting"
+                    )
 
 
 def check_permissions(path):
