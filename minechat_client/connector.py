@@ -28,9 +28,9 @@ class MinechatConnection(observer.Observable):
         super().__init__(subscribers)
 
     async def __aenter__(self):
-        """а зачем здесь contextlib?
-        тут довольно много кода в __aenter__,
-        еще и наследование у класса
+        """переделывать на contextlib не буду, не понимаю зачем.
+        если в следующем задании окажется, что реализация с observer
+        не подходит для задачи, тогда и переделаю
         """
         for delay in _exponential_backoff():
             try:
